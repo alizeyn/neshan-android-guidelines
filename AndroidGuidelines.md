@@ -436,15 +436,15 @@ IDs should be prefixed with the name of the element in camel case. For example:
 | Element            | Prefix            |
 | -----------------  | ----------------- |
 | `TextView`           | `textSomething`             |
-| `ImageView`          | `image`            |
-| `Button`             | `button_`           |
-| `Menu`               | `menu`             |
+| `ImageView`          | `imageSomething`            |
+| `Button`             | `buttonSomething`           |
+| `Menu`               | `menuSomething`             |
 
 Image view example:
 
 ```xml
 <ImageView
-    android:id="@+id/image_profile"
+    android:id="@+id/imagePorfile"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content" />
 ```
@@ -454,23 +454,26 @@ Menu example:
 ```xml
 <menu>
 	<item
-        android:id="@+id/menu_done"
+        android:id="@+id/menuDone"
         android:title="Done" />
 </menu>
 ```
 
 #### 2.3.2.2 Strings
 
-String names start with a prefix that identifies the section they belong to. For example `registration_email_hint` or `registration_name_hint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
+String names start with a prefix that identifies the section they belong to. For example `registrationEmailHint` or `registrationNameHint`. If a string __doesn't belong__ to any section, then you should follow the rules below:
 
 
 | Prefix             | Description                           |
 | -----------------  | --------------------------------------|
-| `error_`             | An error message                      |
-| `msg_`               | A regular information message         |
-| `title_`             | A title, i.e. a dialog title          |
-| `action_`            | An action such as "Save" or "Create"  |
+| `errorSomething`             | An error message                      |
+| `msgSomething`               | A regular information message         |
+| `titleSomething`             | A title, i.e. a dialog title          |
+| `actionSomething`            | An action such as "Save" or "Create"  |
 
+#### 2.3.2.3 Colors
+
+Colors must be camelCase and name of color not name of where it used
 
 
 #### 2.3.2.3 Styles and Themes
