@@ -57,7 +57,7 @@ Fields should be defined at the __top of the file__ and they should follow the n
 * Private, static field names start with __s__.
 * Other fields start with a lower case letter.
 * Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
-* Enums variables should be all upper case ```java private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }```
+* Enums variables should be all upper case ```private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }```
 
 
 Example:
@@ -180,7 +180,7 @@ To only show logs on debug builds:
 if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
 ```
 
-TAG __must__ be the class simple name : ```java MyClass.class.getSimpleName();```
+TAG __must__ be the class simple name : ``` MyClass.class.getSimpleName();```
 
 ### 1.13 Class member ordering
 
