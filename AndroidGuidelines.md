@@ -57,6 +57,8 @@ Fields should be defined at the __top of the file__ and they should follow the n
 * Private, static field names start with __s__.
 * Other fields start with a lower case letter.
 * Static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
+* Enums variables should be all upper case ```java private enum Suit { CLUBS, HEARTS, SPADES, DIAMONDS }```
+
 
 Example:
 
@@ -80,24 +82,8 @@ public class MyClass {
 | `String url`     | `String URL`     |
 | `long id`        | `long ID`        |
 
-### 1.7 Use spaces for indentation
 
-Use __4 space__ indents for blocks:
-
-```java
-if (x == 1) {
-    x++;
-}
-```
-
-Use __8 space__ indents for line wraps:
-
-```java
-Instrument i =
-        someLongExpression(that, wouldNotFit, on, one, line);
-```
-
-### 1.8 Use standard brace style
+### 1.7 Use standard brace style
 
 Braces go on the same line as the code before them.
 
@@ -115,19 +101,20 @@ class MyClass {
 }
 ```
 
-Braces around the statements are required unless the condition and the body fit on one line.
+Braces around the statements are required even when the condition and the body fit on one line.
 
 If the condition and the body fit on one line and that line is shorter than the max line length, then braces are not required, e.g.
 
+
 ```java
-if (condition) body();
+if (condition) {
+    body(); } 
 ```
 
 This is __bad__:
 
 ```java
-if (condition)
-    body();  // bad!
+if (condition) body();  // bad!
 ```
 
 ### 1.9 Annotations
@@ -163,30 +150,6 @@ Annotations applying to fields should be listed __on the same line__, unless the
 @Nullable @Mock DataManager mDataManager;
 ```
 
-### 1.10 Limit variable scope
-
-_The scope of local variables should be kept to a minimum (Effective Java Item 29). By doing so, you increase the readability and maintainability of your code and reduce the likelihood of error. Each variable should be declared in the innermost block that encloses all uses of the variable._
-
-_Local variables should be declared at the point they are first used. Nearly every local variable declaration should contain an initializer. If you don't yet have enough information to initialize a variable sensibly, you should postpone the declaration until you do._ - ([Android code style guidelines](https://source.android.com/source/code-style.html#limit-variable-scope))
-
-### 1.11 Order import statements
-
-If you are using an IDE such as Android Studio, you don't have to worry about this because your IDE is already obeying these rules. If not, have a look below.
-
-The ordering of import statements is:
-
-1. Android imports
-2. Imports from third parties (com, junit, net, org)
-3. java and javax
-4. Same project imports
-
-To exactly match the IDE settings, the imports should be:
-
-* Alphabetically ordered within each grouping, with capital letters before lower case letters (e.g. Z before a).
-* There should be a blank line between each major grouping (android, com, junit, net, org, java, javax).
-
-More info [here](https://source.android.com/source/code-style.html#limit-variable-scope)
-
 ### 1.12 Logging guidelines
 
 Use the logging methods provided by the `Log` class to print out error messages or other information that may be useful for developers to identify issues:
@@ -216,6 +179,8 @@ To only show logs on debug builds:
 ```java
 if (BuildConfig.DEBUG) Log.d(TAG, "The value of x is " + x);
 ```
+
+TAG __must__ be the class simple name : ```java MyClass.class.getSimpleName();```
 
 ### 1.13 Class member ordering
 
@@ -344,38 +309,6 @@ static final String ARGUMENT_USER_ID = "ARGUMENT_USER_ID";
 static final String EXTRA_SURNAME = "com.myapp.extras.EXTRA_SURNAME";
 static final String ACTION_OPEN_USER = "com.myapp.action.ACTION_OPEN_USER";
 ```
-
-### 1.17 Arguments in Fragments and Activities
-
-When data is passed into an `Activity` or `Fragment` via an `Intent` or a `Bundle`, the keys for the different values __must__ follow the rules described in the section above.
-
-When an `Activity` or `Fragment` expects arguments, it should provide a `public static` method that facilitates the creation of the relevant `Intent` or `Fragment`.
-
-In the case of Activities the method is usually called `getStartIntent()`:
-
-```java
-public static Intent getStartIntent(Context context, User user) {
-	Intent intent = new Intent(context, ThisActivity.class);
-	intent.putParcelableExtra(EXTRA_USER, user);
-	return intent;
-}
-```
-
-For Fragments it is named `newInstance()` and handles the creation of the Fragment with the right arguments:
-
-```java
-public static UserFragment newInstance(User user) {
-	UserFragment fragment = new UserFragment();
-	Bundle args = new Bundle();
-	args.putParcelable(ARGUMENT_USER, user);
-	fragment.setArguments(args)
-	return fragment;
-}
-```
-
-__Note 1__: These methods should go at the top of the class before `onCreate()`.
-
-__Note 2__: If we provide the methods described above, the keys for extras and arguments should be `private` because there is not need for them to be exposed outside the class.
 
 ### 1.18 Line length limit
 
